@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessBooking", "FitnessBooking\FitnessBooking.csproj", "{F28D0400-D4C4-4393-8ABC-6C3ED2F82E3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessBooking.DAL", "FitnessBooking.DAL\FitnessBooking.DAL.csproj", "{AD776D4D-B34E-42D8-8148-B1F7B465632B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{F28D0400-D4C4-4393-8ABC-6C3ED2F82E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F28D0400-D4C4-4393-8ABC-6C3ED2F82E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F28D0400-D4C4-4393-8ABC-6C3ED2F82E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD776D4D-B34E-42D8-8148-B1F7B465632B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD776D4D-B34E-42D8-8148-B1F7B465632B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD776D4D-B34E-42D8-8148-B1F7B465632B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD776D4D-B34E-42D8-8148-B1F7B465632B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
