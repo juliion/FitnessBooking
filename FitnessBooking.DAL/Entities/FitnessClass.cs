@@ -1,14 +1,10 @@
-using System.ComponentModel.DataAnnotations;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using FitnessBooking.DAL.Atributes;
 
 namespace FitnessBooking.DAL.Entities;
 
-public class FitnessClass
+[BsonCollection("FitnessClasses")] 
+public class FitnessClass : BaseEntity
 {
-    [BsonId] 
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string Id { get; set; } = null!;
     public string Name { get; set; } = null!;
     public string Description { get; set; } = null!;
     public string InstructorId { get; set; } = null!;
