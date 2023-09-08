@@ -1,3 +1,4 @@
+using FitnessBooking.BLL.Common.Exceptions;
 using FitnessBooking.BLL.DTOs.Users.Requests;
 using FitnessBooking.BLL.DTOs.Users.Responses;
 using FitnessBooking.BLL.Interfaces;
@@ -30,7 +31,14 @@ public class AuthController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateUserDTO newUser)
     {
-        await _authService.CreateAsync(newUser);
+        try
+        {
+            await _authService.CreateAsync(newUser);
+        }
+        catch (ConflictException e)
+        {
+            return Conflict(new {e.Message});
+        }
         
         return Ok();
     }

@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using AutoMapper;
+using FitnessBooking.BLL.Common.Exceptions;
 using FitnessBooking.BLL.DTOs.Users.Requests;
 using FitnessBooking.BLL.DTOs.Users.Responses;
 using FitnessBooking.BLL.Interfaces;
@@ -27,6 +28,11 @@ public class AuthService : IAuthService
     
     public async Task CreateAsync(CreateUserDTO userDto)
     {
+        var user = _usersRepository.FindOneAsync(u => u.Email == userDto.Email);
+        if (user != null)
+        {
+            throw new ConflictException("User with that e-mail address already exists");
+        }
         var newUser = _mapper.Map<CreateUserDTO, User>(userDto);
 
         newUser.Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password);

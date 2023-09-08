@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Common\Exceptions\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\FitnessBooking.DAL\FitnessBooking.DAL.csproj" />
     </ItemGroup>
 
