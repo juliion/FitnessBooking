@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessBooking", "FitnessBo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessBooking.DAL", "FitnessBooking.DAL\FitnessBooking.DAL.csproj", "{AD776D4D-B34E-42D8-8148-B1F7B465632B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessBooking.BLL", "FitnessBooking.BLL\FitnessBooking.BLL.csproj", "{61E5D4EF-02B3-40E3-B88F-0A93775826DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{AD776D4D-B34E-42D8-8148-B1F7B465632B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD776D4D-B34E-42D8-8148-B1F7B465632B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD776D4D-B34E-42D8-8148-B1F7B465632B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61E5D4EF-02B3-40E3-B88F-0A93775826DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E5D4EF-02B3-40E3-B88F-0A93775826DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E5D4EF-02B3-40E3-B88F-0A93775826DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E5D4EF-02B3-40E3-B88F-0A93775826DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

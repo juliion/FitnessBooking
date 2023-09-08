@@ -6,4 +6,16 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\FitnessBooking.BLL\FitnessBooking.BLL.csproj" />
+      <ProjectReference Include="..\FitnessBooking.DAL\FitnessBooking.DAL.csproj" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.21" />
+    </ItemGroup>
+
 </Project>
