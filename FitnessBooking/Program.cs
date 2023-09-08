@@ -2,10 +2,12 @@ using System.Text;
 using FitnessBooking.BLL.Common.Mappings;
 using FitnessBooking.BLL.Interfaces;
 using FitnessBooking.BLL.Services;
+using FitnessBooking.BLL.Validators.Users;
 using FitnessBooking.DAL;
 using FitnessBooking.DAL.Entities;
 using FitnessBooking.DAL.Interfaces;
 using FitnessBooking.DAL.Repositories;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -35,6 +37,8 @@ builder.Services.AddAuthentication(opt =>
     });
 
 builder.Services.AddAutoMapper(typeof(AppProfile));
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
 
 builder.Services.AddScoped<IRepository<User>, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();

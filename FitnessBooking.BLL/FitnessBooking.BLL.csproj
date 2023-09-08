@@ -13,6 +13,7 @@
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="12.0.1" />
       <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+      <PackageReference Include="FluentValidation" Version="11.7.1" />
       <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     </ItemGroup>
 
@@ -24,5 +25,6 @@
         <HintPath>..\..\..\.nuget\packages\system.identitymodel.tokens.jwt\6.10.0\lib\netstandard2.0\System.IdentityModel.Tokens.Jwt.dll</HintPath>
       </Reference>
     </ItemGroup>
+
 
 </Project>
