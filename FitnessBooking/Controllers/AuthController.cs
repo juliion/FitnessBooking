@@ -1,4 +1,5 @@
 using FitnessBooking.BLL.Common.Exceptions;
+using FitnessBooking.BLL.DTOs.Roles.Requests;
 using FitnessBooking.BLL.DTOs.Users.Requests;
 using FitnessBooking.BLL.DTOs.Users.Responses;
 using FitnessBooking.BLL.Interfaces;
@@ -14,12 +15,14 @@ namespace FitnessBooking.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
+    private readonly IRoleService _roleService;
     private readonly IValidator<LoginUserDTO> _loginValidator;
     private readonly IValidator<CreateUserDTO> _createUserValidator;
 
-    public AuthController(IAuthService authService, IValidator<LoginUserDTO> loginValidator, IValidator<CreateUserDTO> createUserValidator)
+    public AuthController(IAuthService authService, IValidator<LoginUserDTO> loginValidator, IValidator<CreateUserDTO> createUserValidator, IRoleService roleService)
     {
         _authService = authService;
+        _roleService = roleService;
         _loginValidator = loginValidator;
         _createUserValidator = createUserValidator;
     }
@@ -44,6 +47,12 @@ public class AuthController : ControllerBase
         try
         {
             id = await _authService.CreateAsync(newUser);
+            
+            await _roleService.AssignRoleToUser(new AssignRoleDTO
+            {
+                UserId = id, 
+                Role = "user"
+            });
         }
         catch (ConflictException e)
         {
