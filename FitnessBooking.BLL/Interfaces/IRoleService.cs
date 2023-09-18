@@ -5,7 +5,7 @@ namespace FitnessBooking.BLL.Interfaces;
 
 public interface IRoleService
 {
-    public Task Create(CreateRoleDTO roleDto);
+    public Task<string> Create(CreateRoleDTO roleDto);
     public Task Delete(string id);
     public List<RoleDTO> GetAll();
     public Task AssignRoleToUser(AssignRoleDTO assignRoleDto);

@@ -42,10 +42,11 @@ public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : Base
             .FirstOrDefaultAsync();
     }
 
-    public async Task InsertOneAsync(TEntity item)
+    public async Task<string> InsertOneAsync(TEntity item)
     {
         await _context.GetCollection<TEntity>()
             .InsertOneAsync(item);
+        return item.Id;
     }
 
     public async Task InsertManyAsync(ICollection<TEntity> items)

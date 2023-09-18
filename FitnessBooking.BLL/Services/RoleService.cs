@@ -21,11 +21,12 @@ public class RoleService : IRoleService
         _usersRepository = usersRepository;
     }
 
-    public async Task Create(CreateRoleDTO roleDto)
+    public async Task<string> Create(CreateRoleDTO roleDto)
     {
         var role = _mapper.Map<CreateRoleDTO, Role>(roleDto);
 
-        await _rolesRepository.InsertOneAsync(role);
+        var id = await _rolesRepository.InsertOneAsync(role);
+        return id;
     }
 
     public async Task Delete(string id)

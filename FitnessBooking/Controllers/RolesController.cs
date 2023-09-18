@@ -22,9 +22,9 @@ public class RolesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateRoleDTO roleDto)
     {
-        await _roleService.Create(roleDto);
+        var id = await _roleService.Create(roleDto);
         
-        return Ok();
+        return Ok(id);
     }
     
     [HttpPost]

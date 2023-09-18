@@ -26,7 +26,7 @@ public class AuthService : IAuthService
         _config = config;
     }
     
-    public async Task CreateAsync(CreateUserDTO userDto)
+    public async Task<string> CreateAsync(CreateUserDTO userDto)
     {
         var user = await _usersRepository.FindOneAsync(u => u.Email == userDto.Email);
         if (user != null)
@@ -37,7 +37,8 @@ public class AuthService : IAuthService
 
         newUser.Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
         
-        await _usersRepository.InsertOneAsync(newUser);
+        var id = await _usersRepository.InsertOneAsync(newUser);
+        return id;
     }
 
     public async Task<UserDTO> GetUserAsync(string id)

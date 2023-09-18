@@ -11,7 +11,7 @@ public interface IRepository<TEntity> where TEntity : BaseEntity
         Expression<Func<TEntity, bool>> filterExpression);
     Task<TEntity> FindOneAsync(Expression<Func<TEntity, bool>> filterExpression);
     Task<TEntity> FindByIdAsync(string id);
-    Task InsertOneAsync(TEntity item);
+    Task<string> InsertOneAsync(TEntity item);
     Task InsertManyAsync(ICollection<TEntity> items);
     Task ReplaceOneAsync(TEntity item);
     Task DeleteOneAsync(Expression<Func<TEntity, bool>> filterExpression);

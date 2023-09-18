@@ -14,8 +14,8 @@ namespace FitnessBooking.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
-    private IValidator<LoginUserDTO> _loginValidator;
-    private IValidator<CreateUserDTO> _createUserValidator;
+    private readonly IValidator<LoginUserDTO> _loginValidator;
+    private readonly IValidator<CreateUserDTO> _createUserValidator;
 
     public AuthController(IAuthService authService, IValidator<LoginUserDTO> loginValidator, IValidator<CreateUserDTO> createUserValidator)
     {
@@ -39,17 +39,18 @@ public class AuthController : ControllerBase
         var validationRes = _createUserValidator.Validate(newUser);
         if (!validationRes.IsValid)
             return BadRequest(validationRes);
-        
+
+        string id = "";
         try
         {
-            await _authService.CreateAsync(newUser);
+            id = await _authService.CreateAsync(newUser);
         }
         catch (ConflictException e)
         {
             return Conflict(new {e.Message});
         }
         
-        return Ok();
+        return Ok(id);
     }
     
     [AllowAnonymous]

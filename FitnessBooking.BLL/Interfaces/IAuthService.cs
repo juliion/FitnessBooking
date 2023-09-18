@@ -5,7 +5,7 @@ namespace FitnessBooking.BLL.Interfaces;
 
 public interface IAuthService
 {
-    public Task CreateAsync(CreateUserDTO userDto);
+    public Task<string> CreateAsync(CreateUserDTO userDto);
     public Task<UserDTO> GetUserAsync(string id);
     public Task<string> AuthenticateAsync(LoginUserDTO userDto);
 }
