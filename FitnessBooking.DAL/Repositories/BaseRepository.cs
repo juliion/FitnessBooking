@@ -8,7 +8,7 @@ namespace FitnessBooking.DAL.Repositories;
 
 public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
 {
-    private readonly AppDbContext _context;
+    protected readonly AppDbContext _context;
 
     public BaseRepository(IOptions<DbSettings> settings)
     {
@@ -60,7 +60,6 @@ public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : Base
         await _context.GetCollection<TEntity>()
             .FindOneAndReplaceAsync(filter, item);
     }
-
     public async Task DeleteOneAsync(Expression<Func<TEntity, bool>> filterExpression)
     {
         await _context.GetCollection<TEntity>()

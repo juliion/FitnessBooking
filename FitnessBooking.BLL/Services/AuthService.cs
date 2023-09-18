@@ -15,11 +15,11 @@ namespace FitnessBooking.BLL.Services;
 
 public class AuthService : IAuthService
 {
-    private readonly IRepository<User> _usersRepository;
+    private readonly IUserRepository _usersRepository;
     private readonly IMapper _mapper;
     private readonly IConfiguration _config;
 
-    public AuthService(IRepository<User> usersRepository, IMapper mapper, IConfiguration config)
+    public AuthService(IUserRepository usersRepository, IMapper mapper, IConfiguration config)
     {
         _usersRepository = usersRepository;
         _mapper = mapper;
@@ -28,7 +28,7 @@ public class AuthService : IAuthService
     
     public async Task CreateAsync(CreateUserDTO userDto)
     {
-        var user = _usersRepository.FindOneAsync(u => u.Email == userDto.Email);
+        var user = await _usersRepository.FindOneAsync(u => u.Email == userDto.Email);
         if (user != null)
         {
             throw new ConflictException("User with that e-mail address already exists");
@@ -58,23 +58,30 @@ public class AuthService : IAuthService
             return null;
         }
         
-        var token = CreateToken(userDto.Email);
+        var token = CreateToken(userDto.Email, user.Roles);
         
         return token;
     }
 
-    private string CreateToken(string email)
+    private string CreateToken(string email, List<string> roles)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = _config.GetSection("JwtKey").ToString();
         var tokenKey = Encoding.ASCII.GetBytes(key);
 
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Email, email),
+        };
+        
+        foreach (var role in roles)
+        {
+            claims.Add(new Claim(ClaimTypes.Role, role));
+        }
+        
         var tokenDescriptor = new SecurityTokenDescriptor()
         {
-            Subject = new ClaimsIdentity(new Claim[]
-            {
-                new Claim(ClaimTypes.Email, email),
-            }),
+            Subject = new ClaimsIdentity(claims),
             Expires = DateTime.UtcNow.AddHours(1),
             SigningCredentials = new SigningCredentials
             (

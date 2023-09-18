@@ -1,4 +1,6 @@
 using AutoMapper;
+using FitnessBooking.BLL.DTOs.Roles.Requests;
+using FitnessBooking.BLL.DTOs.Roles.Responses;
 using FitnessBooking.BLL.DTOs.Users.Requests;
 using FitnessBooking.BLL.DTOs.Users.Responses;
 using FitnessBooking.DAL.Entities;
@@ -12,6 +14,10 @@ public class AppProfile : Profile
         CreateMap<CreateUserDTO, User>();
         CreateMap<LoginUserDTO, User>();
         CreateMap<User, UserDTO>();
+        
+        CreateMap<CreateRoleDTO, Role>();
+        CreateMap<Role, RoleDTO>();
+
     }
     
 }

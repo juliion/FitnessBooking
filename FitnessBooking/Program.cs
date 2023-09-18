@@ -40,8 +40,10 @@ builder.Services.AddAutoMapper(typeof(AppProfile));
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
 
-builder.Services.AddScoped<IRepository<User>, UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IRepository<Role>, RoleRepository>();
+builder.Services.AddScoped<IRoleService, RoleService>();
 
 var app = builder.Build();
 
