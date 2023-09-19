@@ -44,6 +44,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IRepository<Role>, RoleRepository>();
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IRepository<FitnessClass>, FitnessClassRepository>();
+builder.Services.AddScoped<IFitnessClassService, FitnessClassService>();
 
 var app = builder.Build();
 
