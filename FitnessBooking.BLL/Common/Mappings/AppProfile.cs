@@ -1,6 +1,8 @@
 using AutoMapper;
 using FitnessBooking.BLL.DTOs.FitnessClasses.Requests;
 using FitnessBooking.BLL.DTOs.FitnessClasses.Responses;
+using FitnessBooking.BLL.DTOs.Instructors.Requests;
+using FitnessBooking.BLL.DTOs.Instructors.Responses;
 using FitnessBooking.BLL.DTOs.Roles.Requests;
 using FitnessBooking.BLL.DTOs.Roles.Responses;
 using FitnessBooking.BLL.DTOs.Users.Requests;
@@ -23,6 +25,10 @@ public class AppProfile : Profile
         CreateMap<CreateClassDTO, FitnessClass>();
         CreateMap<UpdateClassDTO, FitnessClass>();
         CreateMap<FitnessClass, FitnessClassDTO>();
+        
+        CreateMap<CreateInstructorDTO, Instructor>();
+        CreateMap<UpdateInstructorDTO, Instructor>();
+        CreateMap<Instructor, InstructorDTO>();
 
     }
     

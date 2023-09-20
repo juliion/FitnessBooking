@@ -16,13 +16,15 @@ public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
     private readonly IRoleService _roleService;
+    private readonly IInstructorService _instructorService;
     private readonly IValidator<LoginUserDTO> _loginValidator;
     private readonly IValidator<CreateUserDTO> _createUserValidator;
 
-    public AuthController(IAuthService authService, IValidator<LoginUserDTO> loginValidator, IValidator<CreateUserDTO> createUserValidator, IRoleService roleService)
+    public AuthController(IAuthService authService, IValidator<LoginUserDTO> loginValidator, IValidator<CreateUserDTO> createUserValidator, IRoleService roleService, IInstructorService instructorService)
     {
         _authService = authService;
         _roleService = roleService;
+        _instructorService = instructorService;
         _loginValidator = loginValidator;
         _createUserValidator = createUserValidator;
     }
@@ -48,11 +50,31 @@ public class AuthController : ControllerBase
         {
             id = await _authService.CreateAsync(newUser);
             
-            await _roleService.AssignRoleToUser(new AssignRoleDTO
+            if (newUser.IsInstructor)
             {
-                UserId = id, 
-                Role = "user"
-            });
+                var instructorInfo = newUser.InstructorInfo;
+                if (instructorInfo == null)
+                {
+                    return BadRequest("Provide information about instructor");
+                }
+
+                instructorInfo.UserId = id;
+                await _instructorService.Create(instructorInfo);
+                
+                await _roleService.AssignRoleToUser(new AssignRoleDTO
+                {
+                    UserId = id, 
+                    Role = "instructor"
+                });
+            }
+            else
+            {
+                await _roleService.AssignRoleToUser(new AssignRoleDTO
+                {
+                    UserId = id, 
+                    Role = "user"
+                });
+            }
         }
         catch (ConflictException e)
         {

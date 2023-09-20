@@ -46,6 +46,8 @@ builder.Services.AddScoped<IRepository<Role>, RoleRepository>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IRepository<FitnessClass>, FitnessClassRepository>();
 builder.Services.AddScoped<IFitnessClassService, FitnessClassService>();
+builder.Services.AddScoped<IRepository<Instructor>, InstructorRepository>();
+builder.Services.AddScoped<IInstructorService, InstructorService>();
 
 var app = builder.Build();
 
